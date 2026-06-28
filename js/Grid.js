@@ -19,6 +19,7 @@ class Grid {
   }
 
   render(context) {
+    context.clearRect(0, 0, this.columns * this.cellSize, this.rows * this.cellSize);
     for (let y = 0; y < this.rows; y++) {
       for (let x = 0; x < this.columns; x++) {
         const pixel = this.pixels[y][x];
@@ -30,6 +31,16 @@ class Grid {
           this.cellSize
         );
       }
+    }
+  }
+
+  setPixelColor(column, row, color) {
+    if (row < 0 || row >= this.rows || column < 0 || column >= this.columns) {
+      return;
+    }
+    const pixel = this.pixels[row][column];
+    if (pixel) {
+      pixel.color = color;
     }
   }
 }
